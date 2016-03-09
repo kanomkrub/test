@@ -1,0 +1,25 @@
+{
+  "name": "loadbalancer",
+  "version": "1.0.0",
+  "description": "loadbalancer for imagin krub",
+  "main": "load-balancer.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kanomkrub/test.git"
+  },
+  "keywords": [
+    "nooooo"
+  ],
+  "author": "kanomkrub",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/kanomkrub/test/issues"
+  },
+  "homepage": "https://github.com/kanomkrub/test#readme",
+  "dependencies": {
+    "http-proxy": "^1.13.2"
+  }
+}

@@ -1,0 +1,16 @@
+#start container with config volume
+docker run -d -v /config:/usr/share/elasticsearch/config -v /config/scripts:/usr/share/elasticsearch/config/scripts elasticsearch
+
+#install head plugin (optional)
+docker exec elasticsearch-kq-node1 usr/share/elasticsearch/bin/plugin install mobz/elasticsearch-head
+
+#start kibana link with elasticsearch
+docker run -d --link elasticsearch-kq-node1:elasticsearch kibana
+
+#install sense plugin (optional)
+docker exec kibana-kq opt/kibana/bin/kibana plugin --install elastic/sense
+
+#start node w port 8081
+docker run -it --rm --name node-kq -v /test:/usr/src/app --expose 8081 -w /usr/src/app node:latest
+#run shared js file 
+docker exec node-kq node usr/src/app/test.js
