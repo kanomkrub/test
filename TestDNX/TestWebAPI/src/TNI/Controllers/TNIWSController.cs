@@ -15,9 +15,12 @@ namespace TNI.Controllers
     {
         // GET api/tniws/WS_TNIREGCUST/{national_id}
         [HttpGet("WS_TNIREGCUST/{national_id}")]
-        public bool WS_TNIREGCUST(string national_id)
+        public object WS_TNIREGCUST(string national_id)
         {
-            return InformixAccess.IsCustomer(national_id);
+            if (InformixAccess.IsCustomer(national_id))
+                return new { Confirm_Register = "Y" };
+            else
+                return new { Confirm_Register = "N" };
         }
 
         // GET api/tniws/WS_TNIGETPOINT/{type_of_point}/{dayend_date}
