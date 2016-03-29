@@ -31,17 +31,18 @@ namespace TNI.Controllers
         // GET,POST api/tniws/WS_TNIGETPOINT + body}
         [HttpPost("WS_TNIGETPOINT")]
         [HttpGet("WS_TNIGETPOINT")]
-        public ActionResult WS_TNIGETPOINT([FromBody]GetPointInput input)
+        public ActionResult WS_TNIGETPOINT([FromBody]Dictionary<string,string> input)
         {
-            var result = InformixAccess.GetPoint(input.Type_of_Point, input.Dayend_Date);
+            var type_of_point = input.Single(t => t.Key.ToLower() == "type_of_point").Value;
+            var dayend_date = input.Single(t => t.Key.ToLower() == "dayend_date").Value;
+            var result = InformixAccess.GetPoint(type_of_point, dayend_date);
             return new ObjectResult(result);
         }
 
-        [HttpGet]
+        [HttpGet("Test")]
         public object GetTest()
         {
-            return "sieojfiowef";
-           // return Configuration["connStr"];
+            return Helper.ConnectionString;
         }
     }
 }
